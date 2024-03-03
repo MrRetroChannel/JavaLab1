@@ -50,11 +50,12 @@ public class Vec<T> {
     }
 
     /**
-     * Constructor to create array from another array
+     * Constructor to create Vec from array of vararg
+     * @param vars Initialize elements of array
      */
-    public Vec(T[] array) {
-        _size = array.length;
-        _array = array.clone();
+    public Vec(T... vars) {
+        _size = vars.length;
+        _array = vars.clone();
     }
 
     /**
