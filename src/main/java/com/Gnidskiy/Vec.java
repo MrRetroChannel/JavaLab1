@@ -74,10 +74,24 @@ public class Vec<T> {
      * @param item Element to be pushed into array
      */
     public void push(T item) {
+        insert(_size, item);
+    }
+
+    /**
+     * Adds element to array
+     * @param idx Place of element to be inserted into
+     * @param item Element to be inserted
+     */
+    public void insert(int idx, T item) {
         if (_size + 1 >= _array.length)
             realloc();
 
-        _array[_size++] = item;
+        for (int i = _size; i > idx; --i)
+            _array[i] = _array[i - 1];
+
+        _array[idx] = item;
+
+        ++_size;
     }
 
     /**
@@ -101,5 +115,20 @@ public class Vec<T> {
      */
     public int length() {
         return _size;
+    }
+
+    /**
+     * Converts array to string
+     * @return String representation of array
+     */
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < _size - 1; ++i)
+            builder.append(_array[i]).append(" ");
+        builder.append(_array[_size - 1]);
+
+        return builder.toString();
     }
 }
